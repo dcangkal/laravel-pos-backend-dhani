@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -13,11 +14,12 @@ class ProductController extends Controller
      */
     public function index()
     {
+        //all products
         $products = Product::orderBy('id', 'desc')->get();
         return response()->json([
             'success' => true,
-            'message' => 'List Data Products',
-            'data' => $products,
+            'message' => 'List Data Product',
+            'data' => $products
         ], 200);
     }
 
@@ -27,6 +29,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
+        // dd($data);
         $request->validate([
             'name' => 'required|min:3',
             'price' => 'required|integer',
@@ -37,7 +40,7 @@ class ProductController extends Controller
 
         $filename = time() . '.' . $request->image->extension();
         $request->image->storeAs('public/products', $filename);
-        $product = \App\Models\Product::create([
+        $product = Product::create([
             'name' => $request->name,
             'price' => (int) $request->price,
             'stock' => (int) $request->stock,
