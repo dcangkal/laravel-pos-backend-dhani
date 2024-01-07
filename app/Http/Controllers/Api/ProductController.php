@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -31,7 +30,7 @@ class ProductController extends Controller
         $data = $request->all();
         // dd($data);
         $request->validate([
-            'name' => 'required|min:3',
+            'name' => 'required',
             'price' => 'required|integer',
             'stock' => 'required|integer',
             'category' => 'required|in:food,drink,snack',
