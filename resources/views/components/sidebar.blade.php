@@ -36,6 +36,16 @@
                     </li>
                 </ul>
             </li>
+            <li class="menu-header">Order</li>
+            <li class="nav-item dropdown {{ $type_menu === 'order' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="far fa-file-alt"></i>
+                    <span>Order</span></a>
+                <ul class="dropdown-menu">
+                    <li class="{{ Request::is('order') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('order') }}">All Order</a>
+                    </li>
+                </ul>
+            </li>
         </ul>
 
         <div class="hide-sidebar-mini mt-4 mb-4 p-3">

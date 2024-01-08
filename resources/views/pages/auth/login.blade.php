@@ -59,9 +59,9 @@
 
         </div>
     </div>
-    <div class="text-muted mt-5 text-center">
+    {{-- <div class="text-muted mt-5 text-center">
         Don't have an account? <a href="{{ route('register') }}">Create One</a>
-    </div>
+    </div> --}}
 @endsection
 
 @push('scripts')
