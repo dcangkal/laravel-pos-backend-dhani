@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -58,9 +59,34 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $request->validate([
+            'name' => 'required|min:3|unique:products,name,' . $id,
+            'image' => 'image|mimes:png,jpg,jpeg',
+        ]);
+
         $product = \App\Models\Product::findOrFail($id);
-        $product->update($data);
+
+        if ($request->hasFile('image')) {
+            Storage::delete('public/products/' . $product->image);
+            $filename = time() . '.' . $request->image->extension();
+            $request->image->storeAs('public/products', $filename);
+            $product->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'category' => $request->category,
+                'image' => $filename,
+            ]);
+        } else {
+            $product->update([
+                'name' => $request->name,
+                'description' => $request->description,
+                'price' => $request->price,
+                'stock' => $request->stock,
+                'category' => $request->category,
+            ]);
+        }
         return redirect()->route('product.index')->with('success', 'product berhasil diupdate');
     }
 

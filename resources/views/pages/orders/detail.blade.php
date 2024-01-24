@@ -40,22 +40,21 @@
                                 <div class="clearfix mb-3"></div>
                                 <ul class="list-unstyled list-unstyled-border">
                                     <li class="media">
-                                        {{-- <img class="mr-3 rounded-circle" width="50"
-                                            src="{{ asset('img/payment/mastercard.png') }}" alt="payment"> --}}
                                         <div class="media-body">
                                             <div>Transaction Time : {{ $orders->transaction_time }}</div>
                                         </div>
                                     </li>
                                     <li class="media">
-                                        {{-- <img class="mr-3 rounded-circle" width="50"
-                                            src="{{ asset('img/payment/mastercard.png') }}" alt="avatar"> --}}
+                                        <div class="media-body">
+                                            <div>Payment Method : {{ $orders->payment_method }}</div>
+                                        </div>
+                                    </li>
+                                    <li class="media">
                                         <div class="media-body">
                                             <div>Total Price : {{ $orders->total_price }}</div>
                                         </div>
                                     </li>
                                     <li class="media">
-                                        {{-- <img class="mr-3 rounded-circle" width="50"
-                                            src="{{ asset('img/payment/mastercard.png') }}" alt="avatar"> --}}
                                         <div class="media-body">
                                             <div>Total Item : {{ $orders->total_item }}</div>
                                         </div>
